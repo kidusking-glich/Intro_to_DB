@@ -1,0 +1,61 @@
+--
+-- File: alx_book_store.sql
+-- Description: SQL script to create the database schema for the ALX Bookstore.
+--
+
+-- 1. CREATE DATABASE
+-- Check if the database exists and drop it (optional, for clean setup)
+-- DROP DATABASE IF EXISTS ALX_BOOK_STORE;
+
+CREATE DATABASE IF NOT EXISTS ALX_BOOK_STORE;
+USE ALX_BOOK_STORE;
+
+-- 2. CREATE AUTHORS TABLE
+-- Stores information about authors.
+CREATE TABLE AUTHORS (
+    AUTHOR_ID INT PRIMARY KEY,
+    AUTHOR_NAME VARCHAR(215) NOT NULL
+);
+
+-- 3. CREATE BOOKS TABLE
+-- Stores information about books, with a Foreign Key to the AUTHORS table.
+CREATE TABLE BOOKS (
+    BOOK_ID INT PRIMARY KEY,
+    TITLE VARCHAR(130) NOT NULL,
+    AUTHOR_ID INT,
+    PRICE DOUBLE NOT NULL,
+    PUBLICATION_DATE DATE,
+    
+    FOREIGN KEY (AUTHOR_ID) REFERENCES AUTHORS(AUTHOR_ID)
+);
+
+-- 4. CREATE CUSTOMERS TABLE
+-- Stores information about customers.
+CREATE TABLE CUSTOMERS (
+    CUSTOMER_ID INT PRIMARY KEY,
+    CUSTOMER_NAME VARCHAR(215) NOT NULL,
+    EMAIL VARCHAR(215) UNIQUE NOT NULL,
+    ADDRESS TEXT
+);
+
+-- 5. CREATE ORDERS TABLE
+-- Stores information about customer orders, with a Foreign Key to the CUSTOMERS table.
+CREATE TABLE ORDERS (
+    ORDER_ID INT PRIMARY KEY,
+    CUSTOMER_ID INT,
+    ORDER_DATE DATE NOT NULL,
+    
+    FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID)
+);
+
+-- 6. CREATE ORDER_DETAILS TABLE
+-- Stores the line items for each order, with Foreign Keys to both ORDERS and BOOKS.
+CREATE TABLE ORDER_DETAILS (
+    ORDERDETAILID INT PRIMARY KEY,
+    ORDER_ID INT,
+    BOOK_ID INT,
+    QUANTITY DOUBLE NOT NULL,
+    
+    FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ORDER_ID),
+    FOREIGN KEY (BOOK_ID) REFERENCES BOOKS(BOOK_ID)
+);
