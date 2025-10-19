@@ -6,9 +6,8 @@
 -- 1. CREATE DATABASE
 -- Check if the database exists and drop it (optional, for clean setup)
 -- DROP DATABASE IF EXISTS ALX_BOOK_STORE;
-
-CREATE DATABASE IF NOT EXISTS ALX_BOOK_STORE;
-USE ALX_BOOK_STORE;
+CREATE DATABASE IF NOT EXISTS alx_book_store;
+USE alx_book_store;
 
 -- 2. CREATE AUTHORS TABLE
 -- Stores information about authors.
