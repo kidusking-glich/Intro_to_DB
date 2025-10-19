@@ -11,21 +11,21 @@ USE alx_book_store;
 
 -- 2. CREATE AUTHORS TABLE
 -- Stores information about authors.
-CREATE TABLE AUTHORS (
+CREATE TABLE Authors (
     author_id INT PRIMARY KEY,
     author_name  VARCHAR(215) NOT NULL
 );
 
 -- 3. CREATE BOOKS TABLE
 -- Stores information about books, with a Foreign Key to the AUTHORS table.
-CREATE TABLE BOOKS (
+CREATE TABLE Books (
     book_id INT PRIMARY KEY,
     title VARCHAR(130) NOT NULL,
     author_id INT,
     price DOUBLE NOT NULL,
     publication_date DATE,
     
-    FOREIGN KEY (author_id) REFERENCES AUTHORS(author_id)
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
 -- 4. CREATE CUSTOMERS TABLE
