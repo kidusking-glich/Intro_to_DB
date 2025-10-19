@@ -26,8 +26,8 @@ try:
         cursor = cnx.cursor()
         
         # 3. SQL command to create the database if it doesn't exist.
-        # This fulfills the requirement to not use SELECT or SHOW and prevents failure.
-        create_db_query = f"CREATE DATABASE IF NOT EXISTS {DATABASE_NAME}"
+        # This now uses the literal database name as requested.
+        create_db_query = "CREATE DATABASE IF NOT EXISTS alx_book_store"
         
         # 4. Execute the command
         cursor.execute(create_db_query)
