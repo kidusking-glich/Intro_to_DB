@@ -30,7 +30,7 @@ CREATE TABLE Books (
 
 -- 4. CREATE CUSTOMERS TABLE
 -- Stores information about customers.
-CREATE TABLE CUSTOMERS (
+CREATE TABLE Customers (
     customer_id INT PRIMARY KEY,
     customer_name VARCHAR(215) NOT NULL,
     email VARCHAR(215) UNIQUE NOT NULL,
@@ -39,22 +39,22 @@ CREATE TABLE CUSTOMERS (
 
 -- 5. CREATE ORDERS TABLE
 -- Stores information about customer orders, with a Foreign Key to the CUSTOMERS table.
-CREATE TABLE ORDERS (
+CREATE TABLE Orders (
     order_id INT PRIMARY KEY,
     customer_id INT,
     order_date DATE NOT NULL,
     
-    FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id)
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
 -- 6. CREATE ORDER_DETAILS TABLE
 -- Stores the line items for each order, with Foreign Keys to both ORDERS and BOOKS.
-CREATE TABLE ORDER_DETAILS (
+CREATE TABLE Order_Details (
     orderdetailid INT PRIMARY KEY,
     order_id INT,
     book_id INT,
     quantity DOUBLE NOT NULL,
     
-    FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
-    FOREIGN KEY (book_id) REFERENCES BOOKS(book_id)
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
